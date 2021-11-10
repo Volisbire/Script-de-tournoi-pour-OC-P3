@@ -28,14 +28,14 @@ def players_data(player_number):
 
 
 def fake_players():
-    fauxjoueurs = {"Player1": Player("john1", "titor1", "210781", "M", 8),
-                   "Player2": Player("john2", "titor2", "210781", "M", 2),
-                   "Player3": Player("john3", "titor3", "210781", "M", 3),
-                   "Player4": Player("john4", "titor4", "210781", "M", 4),
-                   "Player5": Player("john5", "titor5", "210781", "M", 5),
-                   "Player6": Player("john6", "titor6", "210781", "M", 6),
-                   "Player7": Player("john7", "titor7", "210781", "M", 7),
-                   "Player8": Player("john8", "titor8", "210781", "M", 1)
+    fauxjoueurs = {"John": Player("john", "titor", "210781", "M", 1),
+                   "Johty": Player("john", "titor", "210781", "M", 2),
+                   "Johnas": Player("john", "titor", "210781", "M", 3),
+                   "Johnneu": Player("john", "titor", "210781", "M", 4),
+                   "Johnnou": Player("john", "titor", "210781", "M", 5),
+                   "JohnWayne": Player("john", "titor", "210781", "M", 6),
+                   "Jolastico": Player("john", "titor", "210781", "M", 7),
+                   "Jopleinletuyo": Player("john", "titor", "210781", "M", 8)
                    }
     return fauxjoueurs
 

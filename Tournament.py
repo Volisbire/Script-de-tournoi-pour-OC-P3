@@ -13,8 +13,6 @@ class Tournoi:
         self.time_ = time_
         self.desc = desc
 
-    def match_list_by_rank(self):
-        return sorted(self.players, key=lambda player: player.rank)
-
-    def match_list_by_point(self):
-        return sorted(self.players, key=lambda player: player.point)
+    def first_round(self):
+        tri = sorted(self.players, key=lambda player: player.rank)
+        # renvoie une liste de joueur trié par rang
