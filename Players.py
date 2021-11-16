@@ -20,7 +20,7 @@ class Player:
 
 
 def players_data(player_number):
-    print(f"Entrez les informations du joueur {player_number} :")
+    print(f"Veuillez entrer les informations du joueur {player_number} :")
     player = {f"joueur {player_number}": (
         Player(input("Nom : "), input("Prenom : "), input("Date de naissance : "), input("Sexe : "),
                input("Rang : ")))}
