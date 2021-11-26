@@ -12,11 +12,15 @@ class Player:
                 "firstname": self.firstname,
                 "birth": self.birth,
                 "sex": self.sex,
-                "rank": self.rank
+                "rank": self.rank,
+                "point": self.point
                 }
 
     def add_point(self, point):
         self.point += point
+
+    def rank_update(self, rank):
+        self.rank += rank
 
 
 def players_data(player_number):
