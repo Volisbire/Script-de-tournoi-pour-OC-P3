@@ -18,3 +18,9 @@ class Player:
 
     def rank_update(self, rank):
         self.rank += rank
+
+    def add_point(self):
+        self.point += 1
+
+    def draw(self):
+        self.point += 0.5

@@ -19,13 +19,22 @@ players = Playerlist()
 def registered_tournament(entry_tournament_name, entry_place, entry_dated,
                           entry_tournament_type_string, entry_comments):
     player_list = players.player_list
+    global tournament
     tournament = Tournoi(entry_tournament_name, entry_place, entry_dated, player_list,
                          entry_tournament_type_string, entry_comments)
 
 
 def start_tournament_():
-    print("tapar")
+    print(tournament.players[0].point)
 
 
 def add_point_(entry_winner_name):
-    pass
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_winner_name:
+            tournament.players[n].add_point()
+        n += 1
+
+
+# def draw(entry_winner_name, entry_loser_name):
+#     pass
