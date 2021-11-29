@@ -40,3 +40,15 @@ class Tournoi:
             match_list = self.match_list_by_point()
         new_round = Round(match_list, "round :" + str(round_number))
         self.rounds.append(new_round)
+
+    def add_point(self, player1):
+        for i in self.players:
+            if i == player1:
+                i.point += 1
+
+    def draw(self, player1, player2):
+        for i in self.players:
+            if i == player1:
+                i.point += 0.5
+            if i == player2:
+                i.point += 0.5
