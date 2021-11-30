@@ -1,4 +1,5 @@
 from Menu import*
+Menu()
 print("")
 print("===================")
 print("*    Aurevoir :)  *")
