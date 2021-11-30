@@ -15,7 +15,7 @@ class Tournoi:
         self.time_ = time_
         self.desc = desc
         self.rounds: List[Round] = []
-        # ajouter une liste des indices
+        # ajouter une fonction qui get la list des ID joueurs dans TinyDB
 
     def match_list_by_rank(self) -> List[Matchs]:
         sorted_by_rank = sorted(self.players, key=lambda player: player.rank)

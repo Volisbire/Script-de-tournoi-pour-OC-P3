@@ -17,10 +17,36 @@ class Player:
                 }
 
     def rank_update(self, rank):
-        self.rank += rank
+        self.rank += int(rank)
 
-    def add_point(self):
-        self.point += 1
+    def add_point(self, point):
+        self.point += int(point)
 
-    def draw(self):
-        self.point += 0.5
+
+def ajout_point(tournament, entry_winner_name):
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_winner_name:
+            tournament.players[n].add_point(1)
+        n += 1
+
+
+def egalite(tournament, entry_winner_name, entry_loser_name):
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_winner_name:
+            tournament.players[n].add_point(0.5)
+        n += 1
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_loser_name:
+            tournament.players[n].add_point(0.5)
+        n += 1
+
+
+def ajout_rang(tournament, entry_lastname, entry_rank):
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_lastname:
+            tournament.players[n].rank_update(entry_rank)
+        n += 1

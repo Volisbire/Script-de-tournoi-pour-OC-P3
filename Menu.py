@@ -86,7 +86,30 @@ def add_players():
 
 
 def update_rank():
-    pass
+    def register_update():
+        update_rank_(entry_lastname.get(), entry_rank.get())
+
+    app = Tk()
+    app.geometry('300x200')
+    app.title("Chess tournament v1.0.0.1")
+
+    lastname = Label(app, text="Lastname :")
+    lastname.grid(column=0, row=1, sticky=W)
+
+    rank = Label(app, text="Rank :")
+    rank.grid(column=0, row=0, sticky=W)
+
+    lastname_string = StringVar()
+    entry_lastname = Entry(app, width=20, textvariable=lastname_string)
+
+    rank_string = StringVar()
+    entry_rank = Entry(app, width=20, textvariable=rank_string)
+
+    entry_lastname.grid(column=1, row=0, padx=10)
+    entry_rank.grid(column=1, row=1, padx=10)
+
+    result_button1 = Button(app, text="Update", command=register_update)
+    result_button1.grid(column=0, row=5, pady=10, sticky=W)
 
 
 menuDeroulant1 = Menu(menuPlayer, tearoff=0)
@@ -184,7 +207,7 @@ def add_point():
     result_label.grid(column=1, row=5, padx=10, sticky=W)
 
     def draw():
-        pass
+        draw_(entry_winner_name, entry_loser_name)
 
     def add():
         add_point_(entry_winner_name.get())

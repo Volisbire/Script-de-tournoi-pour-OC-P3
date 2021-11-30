@@ -1,5 +1,6 @@
 from tinydb import TinyDB
 
+from Players import ajout_point, egalite, ajout_rang
 from Tournament import *
 
 db = TinyDB("db.json")
@@ -24,17 +25,17 @@ def registered_tournament(entry_tournament_name, entry_place, entry_dated,
                          entry_tournament_type_string, entry_comments)
 
 
-def start_tournament_():
-    print(tournament.players[0].point)
-
-
 def add_point_(entry_winner_name):
-    n = 0
-    for _ in tournament.players:
-        if tournament.players[n].lastname == entry_winner_name:
-            tournament.players[n].add_point()
-        n += 1
+    ajout_point(tournament, entry_winner_name)
 
 
-# def draw(entry_winner_name, entry_loser_name):
-#     pass
+def draw_(entry_winner_name, entry_loser_name):
+    egalite(tournament, entry_winner_name, entry_loser_name)
+
+
+def update_rank_(entry_lastname, entry_rank):
+    ajout_rang(tournament, entry_lastname, entry_rank)
+
+
+def start_tournament_():
+    tournament.next_round()
