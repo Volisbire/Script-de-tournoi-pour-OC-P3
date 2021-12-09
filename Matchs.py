@@ -18,3 +18,14 @@ class Matchs:
         self.tuplematch[1][0].add_point(0.5)
         self.tuplematch[0][1] = 0.5
         self.tuplematch[1][1] = 0.5
+
+    def serialize(self):
+        serialized_tuplematch = []
+        for i in self.tuplematch:
+            serialized_tuplematch.append(i[0])
+        serialized_tuplematch[0] = serialized_tuplematch[0].serialize()
+        serialized_tuplematch[1] = serialized_tuplematch[1].serialize()
+
+        return {
+            "tuplematch": serialized_tuplematch
+        }

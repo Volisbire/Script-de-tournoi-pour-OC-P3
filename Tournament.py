@@ -29,7 +29,7 @@ class Tournoi:
     def create_match_list(player_list):
         match_list = []
         for i in range(int(len(player_list) / 2)):
-            match_list.append(Matchs(player_list[i], player_list[i + 4]))
+            match_list.append(Matchs(player_list[i], player_list[i + 3]))
         return match_list
 
     def next_round(self):
@@ -40,3 +40,23 @@ class Tournoi:
             match_list = self.match_list_by_point()
         new_round = Round(match_list, "round :" + str(round_number))
         self.rounds.append(new_round)
+
+    def serialize(self):
+        serialized_list = []
+        for i in self.players:
+            serialized_list.append(i.serialize())
+        serialized_rounds_list = []
+        for _ in self.rounds:
+            n = 0
+            for i in self.rounds[n].match:
+                serialized_rounds_list.append(i.serialize())
+                n += 1
+        return {"name": self.name,
+                "place": self.place,
+                "dated": self.dated,
+                "nbrturns": self.nbrturns,
+                "players": serialized_list,
+                "time": self.time_,
+                "desc": self.desc,
+                "rounds": serialized_rounds_list
+                }

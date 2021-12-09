@@ -12,3 +12,14 @@ class Round:
 
     def end_round(self):
         self.end = datetime.now()
+
+    def serialize(self):
+        serialized_matchs_list = []
+        for i in self.match:
+            serialized_matchs_list.append(i.serialize())
+        return {
+            "end": self.end,
+            "name": self.name,
+            "match": self.match,
+            "creation": self.creation
+        }

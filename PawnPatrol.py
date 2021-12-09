@@ -1,3 +1,5 @@
+from tkinter import Tk, Label, LabelFrame
+
 from tinydb import TinyDB
 
 from Players import ajout_point, egalite, ajout_rang
@@ -39,3 +41,17 @@ def update_rank_(entry_lastname, entry_rank):
 
 def start_tournament_():
     tournament.next_round()
+    r = len(tournament.rounds)-1
+    m = 0
+    print(r)
+    player1 = tournament.rounds[m].match[r].tuplematch[0][0].lastname
+    player2 = tournament.rounds[m].match[r].tuplematch[1][0].lastname
+    app = Tk()
+    app.geometry('600x400')
+    app.title("Chess tournament v1.0.0.1")
+    lol = LabelFrame(app, text="Match "+str(len(tournament.rounds)), padx=20, pady=20)
+    lol.pack(fill="both", expand="yes")
+
+    Label(lol, text=str(player1)+" Versus "+str(player2)).pack()
+
+    app.mainloop()
