@@ -22,7 +22,7 @@ class Tournoi:
         return self.create_match_list(sorted_by_rank)
 
     def match_list_by_point(self) -> List[Matchs]:
-        sorted_by_point = sorted(self.players, key=lambda player: player.point, reverse=True)
+        sorted_by_point = sorted(self.players, key=lambda player: ([-player.point], [player.rank]))
         return self.create_match_list(sorted_by_point)
 
     @staticmethod
@@ -40,3 +40,17 @@ class Tournoi:
             match_list = self.match_list_by_point()
         new_round = Round(match_list, "round :" + str(round_number))
         self.rounds.append(new_round)
+
+    def serialize(self):
+        serialized_players_list = [player.serialize() for player in self.players]
+        serialized_rounds_list = [round.serialize() for round in self.rounds]
+
+        return {"name": self.name,
+                "place": self.place,
+                "dated": self.dated,
+                "nbrturns": self.nbrturns,
+                "players": serialized_players_list,
+                "time": str(self.time_),
+                "desc": self.desc,
+                "rounds": serialized_rounds_list
+                }

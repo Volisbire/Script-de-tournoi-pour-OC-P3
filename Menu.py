@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 
 from PawnPatrol import *
 
+
 fen_princ = Tk()
 img = ImageTk.PhotoImage(Image.open("chess club.png"))
 panel = Label(fen_princ, image=img)
@@ -120,7 +121,7 @@ menuPlayer.configure(menu=menuDeroulant1)
 
 
 def start_tournament():
-    start_tournament_()
+    pass
 
 
 def add_tournament():
