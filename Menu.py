@@ -121,7 +121,7 @@ menuPlayer.configure(menu=menuDeroulant1)
 
 
 def start_tournament():
-    start_tournament_()
+    pass
 
 
 def add_tournament():

@@ -1,5 +1,5 @@
-from typing import List
 
+from typing import List
 from Matchs import Matchs
 from Players import Player
 from Round import Round
@@ -22,14 +22,14 @@ class Tournoi:
         return self.create_match_list(sorted_by_rank)
 
     def match_list_by_point(self) -> List[Matchs]:
-        sorted_by_point = sorted(self.players, key=lambda player: player.point, reverse=True)
+        sorted_by_point = sorted(self.players, key=lambda player: player.point)
         return self.create_match_list(sorted_by_point)
 
     @staticmethod
     def create_match_list(player_list):
         match_list = []
         for i in range(int(len(player_list) / 2)):
-            match_list.append(Matchs(player_list[i], player_list[i + 4]))
+            match_list.append(Matchs(player_list[i], player_list[i + 3]))
         return match_list
 
     def next_round(self):
@@ -44,13 +44,12 @@ class Tournoi:
     def serialize(self):
         serialized_players_list = [player.serialize() for player in self.players]
         serialized_rounds_list = [round.serialize() for round in self.rounds]
-
         return {"name": self.name,
                 "place": self.place,
                 "dated": self.dated,
                 "nbrturns": self.nbrturns,
                 "players": serialized_players_list,
-                "time": self.time_,
+                "time": str(self.time_),
                 "desc": self.desc,
                 "rounds": serialized_rounds_list
                 }
