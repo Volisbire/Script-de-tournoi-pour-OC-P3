@@ -1,5 +1,5 @@
-from typing import List
 
+from typing import List
 from Matchs import Matchs
 from Players import Player
 from Round import Round
@@ -22,7 +22,7 @@ class Tournoi:
         return self.create_match_list(sorted_by_rank)
 
     def match_list_by_point(self) -> List[Matchs]:
-        sorted_by_point = sorted(self.players, key=lambda player: ([-player.point], [player.rank]))
+        sorted_by_point = sorted(self.players, key=lambda player: player.point)
         return self.create_match_list(sorted_by_point)
 
     @staticmethod

@@ -14,6 +14,7 @@ class PawnPatrol:
 
     def add_player(self, player):
         self.player_list.append(player)
+        self.db.insert(player.serialize())
 
     def register_tournament(self, entry_tournament_name, entry_place, entry_dated,
                             entry_tournament_type_string, entry_comments):
@@ -23,24 +24,6 @@ class PawnPatrol:
 
     def next_round(self):
         self.tournament.next_round()
-
-    def ajout_point(self, entry_winner_name):
-        for player in self.tournament.players:
-            if player.lastname == entry_winner_name:
-                player.add_point(1)
-
-    def egalite(self, entry_winner_name, entry_loser_name):
-        for player in self.tournament.players:
-            if player.lastname == entry_winner_name:
-                player.add_point(0.5)
-        for player in self.tournament.players:
-            if player.lastname == entry_loser_name:
-                player.add_point(0.5)
-
-    def ajout_rang(self, entry_lastname, entry_rank):
-        for player in self.tournament.players:
-            if player.lastname == entry_lastname:
-                player.rank_update(entry_rank)
 
     def fake_players(self):
         self.player_list = [Player("john1", "titor1", "210781", "M", 8),
@@ -61,3 +44,6 @@ class PawnPatrol:
 
     def save(self):
         self.db.insert(self.tournament.serialize())
+
+    def fin_de_tour(self):
+        self.tournament.rounds[len(self.tournament.rounds) - 1].end_round()

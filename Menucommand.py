@@ -65,12 +65,15 @@ class Menu:
             print(match.get_player1().lastname + "  versus  " + match.get_player2().lastname)
             winner = input("Veuillez entrer le nom du joueur ayant gagné "
                            "(entrez n'importe quoi d'autre en cas d'égalité): ")
+            print("")
+            print(" ================ ")
             if winner == match.get_player1().lastname:
                 match.player1_win()
             elif winner == match.get_player2().lastname:
                 match.player2_win()
             else:
                 match.draw()
+        self.control.fin_de_tour()
         self.a_tout_moment()
 
     def print_players(self):

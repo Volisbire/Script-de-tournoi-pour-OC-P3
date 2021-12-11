@@ -20,5 +20,4 @@ class Round:
             "name": self.name,
             "match": serialized_matchs_list,
             "creation": str(self.creation)
-
         }
