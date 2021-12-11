@@ -1,4 +1,5 @@
-from tkinter import Tk, Label, LabelFrame, Button
+from tkinter import Tk, Label, LabelFrame
+
 from tinydb import TinyDB
 
 from Players import ajout_point, egalite, ajout_rang
@@ -38,25 +39,19 @@ def update_rank_(entry_lastname, entry_rank):
     ajout_rang(tournament, entry_lastname, entry_rank)
 
 
+def start_tournament_():
+    tournament.next_round()
+    r = len(tournament.rounds)-1
+    m = 0
+    print(r)
+    player1 = tournament.rounds[m].match[r].tuplematch[0][0].lastname
+    player2 = tournament.rounds[m].match[r].tuplematch[1][0].lastname
+    app = Tk()
+    app.geometry('600x400')
+    app.title("Chess tournament v1.0.0.1")
+    lol = LabelFrame(app, text="Match "+str(len(tournament.rounds)), padx=20, pady=20)
+    lol.pack(fill="both", expand="yes")
 
+    Label(lol, text=str(player1)+" Versus "+str(player2)).pack()
 
-
-# def start_tournament_():
-#     tournament.next_round()
-#     app = Tk()
-#     app.geometry('600x400')
-#     app.title("Chess tournament v1.0.0.1")
-#     lol = LabelFrame(app, text="Round " + str(len(tournament.rounds)), padx=20, pady=20)
-#     lol.pack(fill="both", expand="yes")
-#
-#     Label(lol, text=str(player1) + "  versus  " + str(player2)).pack()
-#     Label(lol, text=str(player3) + "  versus  " + str(player4)).pack()
-#     Label(lol, text=str(player5) + "  versus  " + str(player6)).pack()
-#     Label(lol, text=str(player7) + "  versus  " + str(player8)).pack()
-#
-#     result_button1 = Button(lol, text="Next Round", command=tournament.next_round())
-#
-#     result_button1.place(x=130, y=100)
-#
-#     app.mainloop()
-
+    app.mainloop()

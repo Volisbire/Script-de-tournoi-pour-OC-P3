@@ -24,21 +24,29 @@ class Player:
 
 
 def ajout_point(tournament, entry_winner_name):
-    for player in tournament.players:
-        if player.lastname == entry_winner_name:
-            player.add_point(1)
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_winner_name:
+            tournament.players[n].add_point(1)
+        n += 1
 
 
 def egalite(tournament, entry_winner_name, entry_loser_name):
-    for player in tournament.players:
-        if player.lastname == entry_winner_name:
-            player.add_point(0.5)
-    for player in tournament.players:
-        if player.lastname == entry_loser_name:
-            player.add_point(0.5)
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_winner_name:
+            tournament.players[n].add_point(0.5)
+        n += 1
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_loser_name:
+            tournament.players[n].add_point(0.5)
+        n += 1
 
 
 def ajout_rang(tournament, entry_lastname, entry_rank):
-    for player in tournament.players:
-        if player.lastname == entry_lastname:
-            player.rank_update(entry_rank)
+    n = 0
+    for _ in tournament.players:
+        if tournament.players[n].lastname == entry_lastname:
+            tournament.players[n].rank_update(entry_rank)
+        n += 1

@@ -1,5 +1,5 @@
-from Menucommand import*
-Menucommand()
+from Menu import*
+Menu()
 print("")
 print("===================")
 print("*    Aurevoir :)  *")
