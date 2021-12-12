@@ -1,5 +1,6 @@
 from typing import List
 from tinydb import TinyDB
+
 from Matchs import Matchs
 from Players import Player
 from Tournament import Tournoi
@@ -8,7 +9,6 @@ from Tournament import Tournoi
 class PawnPatrol:
     def __init__(self):
         self.player_list = []
-
         self.tournament: Tournoi
         self.db = TinyDB("db.json")
 
