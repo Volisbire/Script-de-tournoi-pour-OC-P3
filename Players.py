@@ -23,6 +23,7 @@ class Player:
         self.point += point
 
 
+
 def ajout_rang(tournament, entry_lastname, entry_rank):
     for player in tournament.players:
         if player.lastname == entry_lastname:

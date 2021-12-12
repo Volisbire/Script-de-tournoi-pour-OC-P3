@@ -38,8 +38,10 @@ class Menu:
     def players_data(self, player_number):
         print(f"Entrez les informations du joueur {player_number + 1} :")
         print(f"Veuillez entrer les informations du joueur {player_number + 1} :")
-        return Player(input("Nom : "), input("Prenom : "), input("Date de naissance : "), input("Sexe : "),
+        player = Player(input("Nom : "), input("Prenom : "), input("Date de naissance : "), input("Sexe : "),
                       input("Rang : "))
+        PLayers.save(player)
+        return player
 
     def register_tournament(self):
         self.control.register_tournament(input("Veuillez renseigner le nom du tournoi : "),
