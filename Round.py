@@ -16,8 +16,8 @@ class Round:
     def serialize(self):
         serialized_matchs_list = [match.serialize() for match in self.matchs]
         return {
-            "end": str(self.end),
+            "creation": str(self.creation),
             "name": self.name,
             "match": serialized_matchs_list,
-            "creation": str(self.creation)
+            "end": str(self.end)
         }

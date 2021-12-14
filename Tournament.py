@@ -47,8 +47,6 @@ class Tournoi:
                 match_list.append(Matchs(sorted_by_point[player1], sorted_by_point[player2]))
                 if len(match_list) == 4:
                     return match_list
-            if self.already_played_together(lastname_players_list[player1], lastname_players_list[player2]):
-                print("")
             player1 += 1
             player2 += 1
         return match_list
