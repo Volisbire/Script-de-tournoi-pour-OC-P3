@@ -1,11 +1,12 @@
 from typing import List
-from Matchs import Matchs
-from Players import Player
-from Round import Round
+from Model.Matchs import Matchs
+from Model.Players import Player
+from Model.Round import Round
 
 
 class Tournoi:
-    def __init__(self, name, place, dated, players: List[Player], time_, desc, nbrturns=4):
+    def __init__(self, name, place, dated, players: List[Player],
+                 time_, desc, nbrturns=4):
         self.name = name
         self.place = place
         self.dated = dated
@@ -16,11 +17,16 @@ class Tournoi:
         self.rounds: List[Round] = []
 
     def match_list_by_rank(self) -> List[Matchs]:
-        sorted_by_rank = sorted(self.players, key=lambda player: player.rank, reverse=True)
+        sorted_by_rank = \
+            sorted(self.players,
+                   key=lambda player: player.rank, reverse=True)
         return self.create_pair_list(sorted_by_rank)
 
     def match_list_by_point(self) -> List[Matchs]:
-        sorted_by_point = sorted(self.players, key=lambda player: [(-player.point), player.rank], reverse=True)
+        sorted_by_point = \
+            sorted(self.players,
+                   key=lambda player: [(-player.point), player.rank],
+                   reverse=True)
         return self.create_next_round(sorted_by_point)
 
     def create_pair_list(self, player_list):
@@ -44,8 +50,11 @@ class Tournoi:
         for player in sorted_by_point:
             lastname_players_list.append(player.lastname)
         for i in range(len(lastname_players_list) - 1):
-            if not self.already_played_together(lastname_players_list[player1], lastname_players_list[player2]):
-                match_list.append(Matchs(sorted_by_point[player1], sorted_by_point[player2]))
+            if not \
+                self.already_played_together(lastname_players_list[player1],
+                                             lastname_players_list[player2]):
+                match_list.append(Matchs(sorted_by_point[player1],
+                                         sorted_by_point[player2]))
                 if len(match_list) == 4:
                     return match_list
             player1 += 1
@@ -53,16 +62,21 @@ class Tournoi:
         return match_list
 
     def already_played_together(self, player1, player2):
-        # verification des pairs déja joué dans l'objet instancié
+        # verification des pairs déja joué
+        # dans l'objet instancié
         for round in self.rounds:
             for match in round.matchs:
-                if ((player1, player2) == (match.get_player1().lastname, match.get_player2().lastname) or
-                        (player1, player2) == (match.get_player2().lastname, match.get_player1().lastname)):
+                if ((player1, player2) == (match.get_player1().lastname,
+                                           match.get_player2().lastname) or
+                        (player1, player2) == (match.get_player2().lastname,
+                                               match.get_player1().lastname)):
                     return True
         return False
 
     def next_round(self):
-        # method appelée pour la creation d'un round, appele une fonction pour le premier, une autre pour les suivants
+        # method appelée pour la creation d'un round,
+        # appele une fonction pour le premier,
+        # une autre pour les suivants
         round_number = len(self.rounds) + 1
         if round_number == 1:
             match_list = self.match_list_by_rank()
@@ -72,8 +86,10 @@ class Tournoi:
         self.rounds.append(new_round)
 
     def serialize(self):
-        serialized_players_list = [player.serialize() for player in self.players]
-        serialized_rounds_list = [round.serialize() for round in self.rounds]
+        serialized_players_list = [player.serialize()
+                                   for player in self.players]
+        serialized_rounds_list = [round.serialize()
+                                  for round in self.rounds]
 
         return {"name": self.name,
                 "place": self.place,
@@ -87,8 +103,13 @@ class Tournoi:
 
     @staticmethod
     def load(tournament_json):
-        tournoi_load = Tournoi(tournament_json["name"], tournament_json["place"], tournament_json["dated"],
-                               [Player.load(player) for player in tournament_json["players"]], tournament_json["time"],
-                               tournament_json["desc"])
-        tournoi_load.rounds = [Round.load(round) for round in tournament_json["rounds"]]
+        tournoi_load = \
+            Tournoi(tournament_json["name"], tournament_json["place"],
+                    tournament_json["dated"],
+                    [Player.load(player) for
+                     player in tournament_json["players"]],
+                    tournament_json["time"],
+                    tournament_json["desc"])
+        tournoi_load.rounds = [Round.load(round) for
+                               round in tournament_json["rounds"]]
         return tournoi_load

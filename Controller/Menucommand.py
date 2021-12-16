@@ -1,9 +1,10 @@
-import Vue
-from PawnPatrol import PawnPatrol
-from Players import Player
+from View import Vue
+from Controller.PawnPatrol import PawnPatrol
+from Model.Players import Player
 
 
-# ce controller recupere les inputs pour PawnPatrol.py,et appel la DB, instance de Players
+# ce controller recupere les inputs pour
+# PawnPatrol.py,et appel la DB, instance de Players
 
 class Menu:
     def __init__(self, control: PawnPatrol, testmode):
@@ -37,14 +38,19 @@ class Menu:
 
     def players_data(self, player_number):
         Vue.print_player_number(player_number)
-        return Player(input("Nom : "), input("Prenom : "), input("Date de naissance : "), input("Sexe : "),
+        return Player(input("Nom : "), input("Prenom : "),
+                      input("Date de naissance : "), input("Sexe : "),
                       input("Rang : "))
 
     def register_tournament(self):
-        self.control.register_tournament(input("Veuillez renseigner le nom du tournoi : "),
-                                         input("Veuillez renseigner la lieu du tournoi : "),
-                                         input("Veuillez renseigner la date du tournoi : "),
-                                         input("Veuillez renseigner le type de tournoi : "),
+        self.control.register_tournament(input("Veuillez renseigner "
+                                               "le nom du tournoi : "),
+                                         input("Veuillez renseigner "
+                                               "le lieu du tournoi : "),
+                                         input("Veuillez renseigner"
+                                               " la date du tournoi : "),
+                                         input("Veuillez renseigner"
+                                               " le type de tournoi : "),
                                          input("Des commentaires : "))
 
     def next_round(self):
@@ -53,15 +59,19 @@ class Menu:
     def show_round(self, round):
         Vue.saut_de_ligne_deux()
         for match in self.control.get_match_round(round):
-            print(match.get_player1().lastname + "  versus  " + match.get_player2().lastname)
+            print(match.get_player1().lastname + "  versus  "
+                  + match.get_player2().lastname)
         self.a_tout_moment()
 
     def ask_match_result(self, round):
         Vue.hop()
         for match in self.control.get_match_round(round):
-            print(match.get_player1().lastname + "  versus  " + match.get_player2().lastname)
-            winner = input("Veuillez entrer le nom du joueur ayant gagné "
-                           "(entrez n'importe quoi d'autre en cas d'égalité): ")
+            print(match.get_player1().lastname + "  versus  "
+                  + match.get_player2().lastname)
+            winner = input("Veuillez entrer le nom du"
+                           " joueur ayant gagné "
+                           "(entrez n'importe quoi "
+                           "d'autre en cas d'égalité): ")
             Vue.saut_de_ligne_trois()
             if winner == match.get_player1().lastname:
                 match.player1_win()
@@ -82,7 +92,8 @@ class Menu:
         Vue.saut_de_ligne_deux()
         choice = input("Voulez vous changer le rang d'un joueur ? O ""\n"
                        "Sauvegarder/charger un tournoi ? S/L ""\n"
-                       "Afficher la liste des joueurs du tournoi en cours par ordre alpabetique/classement ? A/R""\n"
+                       "Afficher la liste des joueurs du tournoi en "
+                       "cours par ordre alpabetique/classement ? A/R""\n"
                        "Afficher le rapport d'un tournoi ? T""\n"
                        "Céer le tournoi ? K""\n"
                        "Pour continuer le tournoi appuyer sur entrée""\n")
@@ -120,12 +131,15 @@ class Menu:
         tournament_id_choice = input("Entrez l'ID du tounoi souhaité : ")
         report_choice = input("Quel type de rapport souhaitez vous voir ?""\n"
                               "Rapport complet du tournoi ? R""\n"
-                              "Liste des joueurs par ordre alphabetique/classement ? A/C""\n"
+                              "Liste des joueurs par "
+                              "ordre alphabetique/classement ? A/C""\n"
                               "Liste des rounds du tournoi ? L""\n"
                               "Liste des matchs du tournoi ? M""\n"
-                              "Appuer sur entrée pour poursuivre le tournoi""\n")
+                              "Appuer sur entrée pour "
+                              "poursuivre le tournoi""\n")
         if report_choice == "R":
-            tournament_json = self.control.get_tournament(int(tournament_id_choice))
+            tournament_json = \
+                self.control.get_tournament(int(tournament_id_choice))
             Vue.print_tournament_name(tournament_json)
             for round in tournament_json["rounds"]:
                 Vue.print_round_name(round)
@@ -133,28 +147,33 @@ class Menu:
                     Vue.print_index_match(index_match, round["match"])
             self.a_tout_moment()
         if report_choice == "A":
-            tournament_json = self.control.get_tournament(int(tournament_id_choice))
+            tournament_json = \
+                self.control.get_tournament(int(tournament_id_choice))
             affichage = (self.control.get_alpha_list(tournament_json))
             Vue.print_get_alpha_list(affichage)
             self.a_tout_moment()
         if report_choice == "C":
-            tournament_json = self.control.get_tournament(int(tournament_id_choice))
+            tournament_json = \
+                self.control.get_tournament(int(tournament_id_choice))
             affichage = (self.control.get_ranked_list(tournament_json))
             Vue.print_get_ranked_list(affichage)
             self.a_tout_moment()
         if report_choice == "L":
-            tournament_json = self.control.get_tournament(int(tournament_id_choice))
+            tournament_json = \
+                self.control.get_tournament(int(tournament_id_choice))
             affichage = (self.control.get_round_list(tournament_json))
             Vue.print_get_round_list(affichage)
             self.a_tout_moment()
         if report_choice == "M":
-            tournament_json = self.control.get_tournament(int(tournament_id_choice))
+            tournament_json = \
+                self.control.get_tournament(int(tournament_id_choice))
             affichage = (self.control.get_match_list(tournament_json))
             Vue.print_get_match_list(affichage)
             self.a_tout_moment()
 
     def start_or_load_tournament(self):
-        return input("Voulez vous charger(L)/commencer(S) un tournoi  ? L/S""\n")
+        return input("Voulez vous charger(L)/"
+                     "commencer(S) un tournoi  ? L/S""\n")
 
     def load_tournament(self):
         tournament_list = self.control.tournament_list()
@@ -163,6 +182,7 @@ class Menu:
             Vue.print_tournament_list(tournament_list, n)
             n += 1
         tournament_id_choice = input("Entrez l'ID du tounoi souhaité : ")
-        tournament_json = self.control.get_tournament(int(tournament_id_choice))
+        tournament_json = \
+            self.control.get_tournament(int(tournament_id_choice))
         Vue.tournament_loaded()
         self.control.load(tournament_json)

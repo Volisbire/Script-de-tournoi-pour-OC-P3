@@ -1,5 +1,5 @@
-from PawnPatrol import PawnPatrol
-from Menucommand import Menu
+from Controller.PawnPatrol import PawnPatrol
+from Controller.Menucommand import Menu
 
 control = PawnPatrol()
 Menu = Menu(control, testmode=True)

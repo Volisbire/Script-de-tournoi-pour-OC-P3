@@ -24,4 +24,5 @@ class Player:
 
     @staticmethod
     def load(json):
-        return Player(json["lastname"], json["firstname"], json["birth"], json["sex"], json["rank"], json["point"])
+        return Player(json["lastname"], json["firstname"],
+                      json["birth"], json["sex"], json["rank"], json["point"])

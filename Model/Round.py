@@ -1,6 +1,6 @@
 from typing import List
 from datetime import datetime
-from Matchs import Matchs
+from Model.Matchs import Matchs
 
 
 class Round:
@@ -24,4 +24,5 @@ class Round:
 
     @staticmethod
     def load(json):
-        return Round([Matchs.load(match) for match in json["match"]], json["match"])
+        return Round([Matchs.load(match)
+                      for match in json["match"]], json["match"])

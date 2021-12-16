@@ -1,9 +1,9 @@
 from typing import List
 from tinydb import TinyDB
 from tinydb import Query
-from Matchs import Matchs
-from Players import Player
-from Tournament import Tournoi
+from Model.Matchs import Matchs
+from Model.Players import Player
+from Model.Tournament import Tournoi
 
 
 # ce controller instancie les objets, inputs recupéré depuis Menucomment.py
@@ -19,10 +19,13 @@ class PawnPatrol:
         self.player_list.append(player)
         self.player_table.insert(player.serialize())
 
-    def register_tournament(self, entry_tournament_name, entry_place, entry_dated,
+    def register_tournament(self, entry_tournament_name, entry_place,
+                            entry_dated,
                             entry_tournament_type_string, entry_comments):
         player_list = self.player_list
-        self.tournament = Tournoi(entry_tournament_name, entry_place, entry_dated, player_list,
+        self.tournament = Tournoi(entry_tournament_name,
+                                  entry_place, entry_dated,
+                                  player_list,
                                   entry_tournament_type_string, entry_comments)
 
     def next_round(self):
@@ -104,6 +107,8 @@ class PawnPatrol:
         match_list = []
         for round in tournament_json["rounds"]:
             for match in round["match"]:
-                match_list.append((match["player1"]["lastname"] + match["player1"]["firstname"],
-                                   match["player2"]["lastname"] + match["player2"]["firstname"]))
+                match_list.append((match["player1"]["lastname"] +
+                                   match["player1"]["firstname"],
+                                   match["player2"]["lastname"] +
+                                   match["player2"]["firstname"]))
         return match_list

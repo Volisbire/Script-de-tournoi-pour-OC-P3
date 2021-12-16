@@ -1,4 +1,4 @@
-from Players import Player
+from Model.Players import Player
 
 
 class Matchs:
@@ -35,7 +35,8 @@ class Matchs:
 
     @staticmethod
     def load(json):
-        result = Matchs(Player.load(json["player1"]), Player.load(json["player2"]))
+        result = Matchs(Player.load(json["player1"]),
+                        Player.load(json["player2"]))
         result.tuplematch[0][1] = json["player1points"]
         result.tuplematch[1][1] = json["player2points"]
         return result
