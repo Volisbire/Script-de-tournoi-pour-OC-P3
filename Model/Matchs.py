@@ -32,3 +32,10 @@ class Matchs:
             "player2": self.get_player2().serialize(),
             "player2points": self.tuplematch[1][1]
         }
+
+    @staticmethod
+    def load(json):
+        result = Matchs(Player.load(json["player1"]), Player.load(json["player2"]))
+        result.tuplematch[0][1] = json["player1points"]
+        result.tuplematch[1][1] = json["player2points"]
+        return result

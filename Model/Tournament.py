@@ -14,7 +14,6 @@ class Tournoi:
         self.time_ = time_
         self.desc = desc
         self.rounds: List[Round] = []
-        # ajouter une method qui get la list des ID joueurs dans TinyDB
 
     def match_list_by_rank(self) -> List[Matchs]:
         sorted_by_rank = sorted(self.players, key=lambda player: player.rank, reverse=True)
@@ -30,12 +29,14 @@ class Tournoi:
         return self.create_first_round(group_first, group_second)
 
     def create_first_round(self, group_first, group_second):
+        # cascade depuis la fonction match_list_by_rank
         match_list = []
         for player1, player2 in zip(group_first, group_second):
             match_list.append(Matchs(player1, player2))
         return match_list
 
     def create_next_round(self, sorted_by_point):
+        # cascade depuis la fonction sorted_by_points
         lastname_players_list = []
         match_list = []
         player1 = 0
@@ -52,6 +53,7 @@ class Tournoi:
         return match_list
 
     def already_played_together(self, player1, player2):
+        # verification des pairs déja joué dans l'objet instancié
         for round in self.rounds:
             for match in round.matchs:
                 if ((player1, player2) == (match.get_player1().lastname, match.get_player2().lastname) or
@@ -60,6 +62,7 @@ class Tournoi:
         return False
 
     def next_round(self):
+        # method appelée pour la creation d'un round, appele une fonction pour le premier, une autre pour les suivants
         round_number = len(self.rounds) + 1
         if round_number == 1:
             match_list = self.match_list_by_rank()
@@ -81,3 +84,11 @@ class Tournoi:
                 "desc": self.desc,
                 "rounds": serialized_rounds_list
                 }
+
+    @staticmethod
+    def load(tournament_json):
+        tournoi_load = Tournoi(tournament_json["name"], tournament_json["place"], tournament_json["dated"],
+                               [Player.load(player) for player in tournament_json["players"]], tournament_json["time"],
+                               tournament_json["desc"])
+        tournoi_load.rounds = [Round.load(round) for round in tournament_json["rounds"]]
+        return tournoi_load

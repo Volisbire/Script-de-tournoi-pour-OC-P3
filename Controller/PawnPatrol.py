@@ -6,6 +6,7 @@ from Players import Player
 from Tournament import Tournoi
 
 
+# ce controller instancie les objets, inputs recupéré depuis Menucomment.py
 class PawnPatrol:
     def __init__(self):
         self.player_list = []
@@ -41,8 +42,8 @@ class PawnPatrol:
     def get_match_round(self, round_number) -> List[Matchs]:
         return self.tournament.rounds[round_number].matchs
 
-    def get_round_number(self):
-        return self.tournament.nbrturns
+    def get_remaining_rounds(self):
+        return self.tournament.nbrturns - len(self.tournament.rounds)
 
     def save(self):
         self.tournament_table.insert(self.tournament.serialize())
@@ -50,8 +51,8 @@ class PawnPatrol:
     def fin_de_tour(self):
         self.tournament.rounds[len(self.tournament.rounds) - 1].end_round()
 
-    def load(self):
-        pass
+    def load(self, tournament_json):
+        self.tournament = Tournoi.load(tournament_json)
 
     def sorted_alpha_list(self):
         sorted_alpha_list = []
@@ -76,7 +77,6 @@ class PawnPatrol:
 
     def tournament_match_list(self):
         pass
-
 
     def tournament_list(self):
         return self.tournament_table.all()

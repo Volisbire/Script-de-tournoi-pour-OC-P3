@@ -21,3 +21,7 @@ class Round:
             "match": serialized_matchs_list,
             "end": str(self.end)
         }
+
+    @staticmethod
+    def load(json):
+        return Round([Matchs.load(match) for match in json["match"]], json["match"])
