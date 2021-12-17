@@ -14,7 +14,6 @@ Installation
 
 py -m venv c:\path\to\myenv
 
-
 3. Pour installer les bibliotheques necessaires:
 
 py -m pip install -r requirements.txt
@@ -22,6 +21,5 @@ py -m pip install -r requirements.txt
 
 Utilisation
 -----------
-Depuis la console:
-
-py main.py
+Placez vous dans le dossier ou vous avez clonez ce repository :
+py -m main.py
