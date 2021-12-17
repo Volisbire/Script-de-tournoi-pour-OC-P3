@@ -74,9 +74,7 @@ class Tournoi:
         return False
 
     def next_round(self):
-        # method appelée pour la creation d'un round,
-        # appele une fonction pour le premier,
-        # une autre pour les suivants
+        # method appelée pour la creation d'un round
         round_number = len(self.rounds) + 1
         if round_number == 1:
             match_list = self.match_list_by_rank()

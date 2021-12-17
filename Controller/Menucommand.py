@@ -183,6 +183,6 @@ class Menu:
             n += 1
         tournament_id_choice = input("Entrez l'ID du tounoi souhaité : ")
         tournament_json = \
-            self.control.get_tournament(int(tournament_id_choice))
+  self.control.get_tournament(int(tournament_id_choice))
         Vue.tournament_loaded()
         self.control.load(tournament_json)
