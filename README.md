@@ -21,5 +21,6 @@ py -m pip install -r requirements.txt
 
 Utilisation
 -----------
-Placez vous dans le dossier ou vous avez clonez ce repository :
+*Placez vous dans le dossier ou vous avez clonez ce repository :
 py -m main.py
+*Le fichier Main contient un booléen qui genere automatiquement les 8 joueurs si =True
