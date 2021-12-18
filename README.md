@@ -23,4 +23,5 @@ Utilisation
 -----------
 * Placez vous dans le dossier ou vous avez clonez ce repository puis éxécutez :
 py -m main.py
-* Le fichier Main contient un booléen qui genere automatiquement les 8 joueurs si =True
+* Le fichier Main contient un booléen qui genere automatiquement les 8 joueurs si testmode=True
+* Pour génerer les 8 joueurs manuellement : testmode=False
