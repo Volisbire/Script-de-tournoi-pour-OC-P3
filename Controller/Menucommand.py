@@ -144,7 +144,7 @@ class Menu:
             for round in tournament_json["rounds"]:
                 Vue.print_round_name(round)
                 for index_match, match in enumerate(round["match"]):
-                    Vue.print_index_match(index_match, round["match"])
+                    Vue.print_index_match(index_match, match)
             self.a_tout_moment()
         if report_choice == "A":
             tournament_json = \
