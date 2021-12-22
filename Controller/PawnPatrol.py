@@ -59,14 +59,14 @@ class PawnPatrol:
 
     def sorted_alpha_list(self):
         sorted_alpha_list = []
-        for player in self.player_list:
+        for player in self.tournament.players:
             sorted_alpha_list.append(player.firstname)
         sorted_alpha_list = sorted(sorted_alpha_list)
         return sorted_alpha_list
 
     def sorted_byrank_list(self):
         sorted_rank_list = []
-        for player in self.player_list:
+        for player in self.tournament.players:
             sorted_rank_list.append((player.lastname, player.rank))
         sorted_rank_list.sort(key=lambda x: x[1])
         return sorted_rank_list

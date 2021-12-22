@@ -83,7 +83,7 @@ class Menu:
         self.a_tout_moment()
 
     def print_players(self):
-        for player in self.control.player_list:
+        for player in self.control.tournament.players:
             print_player_point(player)
         Vue.pretty_saut_de_ligne()
         self.a_tout_moment()
@@ -95,13 +95,12 @@ class Menu:
                        "Afficher la liste des joueurs du tournoi en "
                        "cours par ordre alpabetique/classement ? A/R""\n"
                        "Afficher le rapport d'un tournoi ? T""\n"
-                       "Céer le tournoi ? K""\n"
                        "Pour continuer le tournoi appuyer sur entrée""\n")
         if choice == "O":
             Vue.hop()
             joueur = input("Veuillez indiquer le nom du joueur : ")
             rank = input("Veuillez indiquer le rang souhaité : ")
-            for player in self.control.player_list:
+            for player in self.control.tournament.players:
                 if joueur == player.lastname:
                     player.rank = rank
         if choice == "S":
@@ -119,8 +118,6 @@ class Menu:
             self.a_tout_moment()
         if choice == "T":
             self.rapport()
-        if choice == "K":
-            self.register_tournament()
 
     def rapport(self):
         tournament_list = self.control.tournament_list()
