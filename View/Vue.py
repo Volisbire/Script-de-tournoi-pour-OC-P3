@@ -99,3 +99,12 @@ def print_get_round_list(affichage):
 
 def print_get_match_list(affichage):
     print(affichage)
+
+
+def print_match(match):
+    print(match.get_player1().lastname + "  versus  "
+          + match.get_player2().lastname)
+
+
+def print_player_point(player):
+    print("    ", player.lastname, "  ", player.point)

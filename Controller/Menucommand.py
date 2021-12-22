@@ -1,10 +1,12 @@
 from View import Vue
 from Controller.PawnPatrol import PawnPatrol
 from Model.Players import Player
+from View.Vue import print_match, print_player_point
 
 
 # ce controller recupere les inputs pour
 # PawnPatrol.py,et appel la DB, instance de Players
+
 
 class Menu:
     def __init__(self, control: PawnPatrol, testmode):
@@ -59,15 +61,13 @@ class Menu:
     def show_round(self, round):
         Vue.saut_de_ligne_deux()
         for match in self.control.get_match_round(round):
-            print(match.get_player1().lastname + "  versus  "
-                  + match.get_player2().lastname)
+            print_match(match)
         self.a_tout_moment()
 
     def ask_match_result(self, round):
         Vue.hop()
         for match in self.control.get_match_round(round):
-            print(match.get_player1().lastname + "  versus  "
-                  + match.get_player2().lastname)
+            print_match(match)
             winner = input("Veuillez entrer le nom du"
                            " joueur ayant gagné "
                            "(entrez n'importe quoi "
@@ -84,7 +84,7 @@ class Menu:
 
     def print_players(self):
         for player in self.control.player_list:
-            print("    ", player.lastname, "  ", player.point)
+            print_player_point(player)
         Vue.pretty_saut_de_ligne()
         self.a_tout_moment()
 
@@ -183,6 +183,6 @@ class Menu:
             n += 1
         tournament_id_choice = input("Entrez l'ID du tounoi souhaité : ")
         tournament_json = \
-  self.control.get_tournament(int(tournament_id_choice))
+            self.control.get_tournament(int(tournament_id_choice))
         Vue.tournament_loaded()
         self.control.load(tournament_json)
